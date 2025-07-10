@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instant 3-Way Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f0f8ff;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Instant Division Calculator</h2>
+
+  <input type="number" id="userValue" placeholder="Enter a number" oninput="autoCalculate()" />
+
+  <br>
+
+  <button onclick="setDivisor(1.18)">Divide by 1.18</button>
+  <button onclick="setDivisor(1.12)">Divide by 1.12</button>
+  <button onclick="setDivisor(1.15)">Divide by 1.15</button>
+  <button onclick="clearAll()">Clear</button>
+
+  <div id="result">Result: </div>
+
+  <script>
+    let currentDivisor = 1.18; // Default
+
+    function setDivisor(value) {
+      currentDivisor = value;
+      autoCalculate();
+    }
+
+    function autoCalculate() {
+      const value = parseFloat(document.getElementById("userValue").value);
+      const resultDiv = document.getElementById("result");
+
+      if (!isNaN(value)) {
+        const result = value / currentDivisor;
+        resultDiv.textContent = `Result: ${result.toFixed(2)} (÷ ${currentDivisor})`;
+      } else {
+        resultDiv.textContent = "Result: ";
+      }
+    }
+
+    function clearAll() {
+      document.getElementById("userValue").value = "";
+      document.getElementById("result").textContent = "Result: ";
+    }
+  </script>
+
+</body>
+</html>
